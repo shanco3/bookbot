@@ -1,4 +1,4 @@
-from stats import word_count, character_appearance
+from stats import word_count, character_appearance, sort_on, sorter, printer
 
 def get_book_text(book_path):
     with open(book_path) as f:
@@ -7,7 +7,16 @@ def get_book_text(book_path):
 def main():
     book_path = "books/frankenstein.txt"
     text = get_book_text(book_path)
-    char_instance = character_appearance(text)
-    print(f"{word_count(text)} words found in the document")
-    print(char_instance)
+    char_dict = character_appearance(text)
+    
+    print(f'''
+============ BOOKBOT ============
+Analyzing book found at {book_path}...
+----------- Word Count ----------
+Found {word_count(text)} total words
+--------- Character Count -------''')
+    
+    printer(sorter(char_dict))
+    print(f"============= END ===============")
+
 main()

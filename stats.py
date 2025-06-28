@@ -1,3 +1,5 @@
+
+
 def word_count(text):
     word_count = 0
     for w in text.split():
@@ -23,8 +25,14 @@ def sorter(char_dict):
     dict_list.sort(reverse=True, key=sort_on)
     return dict_list
 
-def printer(dicts):
+def printer(path, count, dicts):
+    print(f"============ BOOKBOT ============")
+    print(f"Analyzing book found at {path}...")
+    print(f"----------- Word Count ----------")
+    print(f"Found {count} total words")
+    print(f"--------- Character Count -------")
     for d in dicts:
         if d["char"].isalpha() == True:
             print(f"{d["char"]}: {str(d["num"])}")
+    print(f"============= END ===============")
         

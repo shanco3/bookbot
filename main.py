@@ -1,22 +1,17 @@
-from stats import word_count, character_appearance, sort_on, sorter, printer
+import sys
+from stats import word_count, character_appearance, sorter, printer
 
 def get_book_text(book_path):
     with open(book_path) as f:
         return f.read()
 
 def main():
-    book_path = "books/frankenstein.txt"
+    if len(sys.argv) < 2:
+        print("Usage: python3 main.py <path_to_book>")
+        sys.exit(1)
+    
+    book_path = sys.argv[1]
     text = get_book_text(book_path)
     char_dict = character_appearance(text)
-    
-    print(f'''
-============ BOOKBOT ============
-Analyzing book found at {book_path}...
------------ Word Count ----------
-Found {word_count(text)} total words
---------- Character Count -------''')
-    
-    printer(sorter(char_dict))
-    print(f"============= END ===============")
-
+    printer(book_path, word_count(text), sorter(char_dict))
 main()
